@@ -5,6 +5,7 @@ import Main from './Main';
 import '../pages/index.css';
 import PopupWithForm from './PopupWithForm';
 
+
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
