@@ -47,6 +47,7 @@ function App() {
           name='info'
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          buttonText='Сохранить'
         >
           <input
             id="input-name"
@@ -76,17 +77,13 @@ function App() {
             className="error">
             Вы пропустили это поле
           </span>
-          <button
-            className="popup__save-button"
-            type="submit">
-            Сохранить
-          </button>
         </PopupWithForm>
         <PopupWithForm
           title='Новое место'
           name='place'
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
+          buttonText='Создать'
         >
           <input id="name-card"
             className="popup__input-text popup__input-text_type_placeName"
@@ -114,17 +111,13 @@ function App() {
             className="error">
             Введите адрес сайта
           </span>
-          <button
-            className="popup__save-button popup__add-button"
-            type="submit">
-            Создать
-          </button>
         </PopupWithForm>
         <PopupWithForm
           title='Обновить аватар'
           name='avatar'
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          buttonText='Сохранить'
         >
           <input
             id="avatar-link"
@@ -140,20 +133,12 @@ function App() {
             className="error">
             Введите адрес сайта
           </span>
-          <button
-            className="popup__save-button popup__add-button"
-            type="submit">
-            Сохранить
-          </button>
         </PopupWithForm>
         <PopupWithForm
           title='Вы уверены?'
-          name='element'>
-          <button
-            className="popup__save-button"
-            type="submit">
-            Да
-          </button>
+          name='element'
+          buttonText='Да'
+        >
         </PopupWithForm>
         <ImagePopup
           card={selectedCard}
