@@ -3,9 +3,9 @@ import React from 'react'
 
 function ImagePopup(props) {
     return (
-        <div className={props.card.name || props.card.link !==''
-        ? "popup popup_type_pic popup_opened"
-        : "popup popup_type_pic"}>
+        <div className={props.card.name || props.card.link !== ''
+            ? "popup popup_type_pic popup_opened"
+            : "popup popup_type_pic"}>
             <div className="popup__overlay"></div>
             <div className="popup__pic-container">
                 <button className="popup__close-button" onClick={props.onClose} type="button"></button>
