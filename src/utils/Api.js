@@ -86,6 +86,9 @@ class Api {
       },
     }).then(this._handleResponse);
   }
+  cardLike(id,isLiked){
+    return isLiked ? this.deleteLike(id) : this.putLike(id);
+  }
 }
 const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-35/',
