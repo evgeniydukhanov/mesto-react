@@ -8,6 +8,7 @@ import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import api from '../utils/Api';
 import EditProfilePopup from '../components/EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 
 
 function App() {
@@ -50,6 +51,13 @@ function App() {
     })
     .catch(err => `Не обновился профиль ${err}`)
   }
+  function handleUpdateAvatar(avatar) {
+    api.patchAvatar(avatar)
+    .then((userInfo) =>{
+      setCurrentUser(userInfo)
+    })
+    .catch(err => `Не удалось обновить аватар ${err}`)
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -67,42 +75,6 @@ function App() {
             isOpen={isEditProfilePopupOpen}
             onUpdateUser={handleUpdateUser}
           />
-          {/* <PopupWithForm
-            title='Редактировать профиль'
-            name='info'
-            isOpen={isEditProfilePopupOpen}
-            onClose={closeAllPopups}
-            buttonText='Сохранить'
-          >
-            <input
-              id="input-name"
-              className="popup__input-text popup__input-text_type_name"
-              type="text" name="name"
-              defaultValue=""
-              placeholder="Имя"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span id='input-name-error'
-              className="error">
-              Вы пропустили это поле
-            </span>
-            <input id="input-workplace"
-              className="popup__input-text popup__input-text_type_workplace"
-              type="text"
-              name="about"
-              defaultValue=""
-              placeholder="Род занятий"
-              minLength="2"
-              maxLength="200"
-              required />
-            <span
-              id='input-workplace-error'
-              className="error">
-              Вы пропустили это поле
-            </span>
-          </PopupWithForm> */}
           <PopupWithForm
             title='Новое место'
             name='place'
@@ -137,7 +109,12 @@ function App() {
               Введите адрес сайта
             </span>
           </PopupWithForm>
-          <PopupWithForm
+          <EditAvatarPopup
+            onClose={closeAllPopups}
+            isOpen={isEditAvatarPopupOpen}
+            onUpdateAvatar={handleUpdateAvatar}
+          />
+          {/* <PopupWithForm
             title='Обновить аватар'
             name='avatar'
             isOpen={isEditAvatarPopupOpen}
@@ -158,7 +135,7 @@ function App() {
               className="error">
               Введите адрес сайта
             </span>
-          </PopupWithForm>
+          </PopupWithForm> */}
           <PopupWithForm
             title='Вы уверены?'
             name='element'
