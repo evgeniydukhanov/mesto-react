@@ -7,6 +7,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import api from '../utils/Api';
+import EditProfilePopup from '../components/EditProfilePopup';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({ name: '', link: '' });
   const [currentUser, setCurrentUser] = React.useState('')
-
+ 
   React.useEffect(() => {
     api.getUserInfo()
       .then((userInfo) => {
@@ -42,6 +43,13 @@ function App() {
   function handleCardClick(cardInfo) {
     setSelectedCard({ name: cardInfo.name, link: cardInfo.link });
   }
+  function handleUpdateUser(currentUser){
+    api.patchUserInfo({name: currentUser.name, about: currentUser.about})
+    .then((userInfo)=> {
+      setCurrentUser(userInfo)
+    })
+    .catch(err => `Не обновился профиль ${err}`)
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -54,7 +62,12 @@ function App() {
             onCardClick={handleCardClick}
           />
           <Footer />
-          <PopupWithForm
+          <EditProfilePopup
+            onClose={closeAllPopups}
+            isOpen={isEditProfilePopupOpen}
+            onUpdateUser={handleUpdateUser}
+          />
+          {/* <PopupWithForm
             title='Редактировать профиль'
             name='info'
             isOpen={isEditProfilePopupOpen}
@@ -89,7 +102,7 @@ function App() {
               className="error">
               Вы пропустили это поле
             </span>
-          </PopupWithForm>
+          </PopupWithForm> */}
           <PopupWithForm
             title='Новое место'
             name='place'
