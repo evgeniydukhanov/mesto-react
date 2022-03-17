@@ -85,7 +85,11 @@ class Api {
       },
     }).then(this._handleResponse);
   }
+<<<<<<< HEAD
   cardLike(id, isLiked) {
+=======
+  cardLike(id,isLiked){
+>>>>>>> ea455dd016e197c7eeb7c183815a4b4f47b8c2ca
     return isLiked ? this.deleteLike(id) : this.putLike(id);
   }
 }
