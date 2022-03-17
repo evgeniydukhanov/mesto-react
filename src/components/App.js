@@ -21,16 +21,8 @@ function App() {
     name: "",
     link: "",
   });
-  const [currentUser, setCurrentUser] = React.useState("");
+  const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
-  React.useEffect(() => {
-    api
-      .getCards()
-      .then((cards) => {
-        setCards(cards);
-      })
-      .catch((err) => `Не удалось получить карточки с сервера : ${err}`);
-  }, []);
 
   React.useEffect(() => {
     Promise.all([api.getCards(), api.getUserInfo()])
